@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>SOL Proceedings</title>
+  <link rel="stylesheet" type="text/css" href="popup.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      margin-left: auto;
+      margin-right: auto;
+      height: 100vh;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+    .title {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      width: 600px;
+      max-width: 600px;
+    }
+    .line {
+      margin-bottom: 20px;
+    }
+    input[type="text"], input[type="file"], input[type="number"], input[type="date"]{
+      padding: 10px;
+      width: calc(100% - 22px);
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .info {
+      margin-top: 5px;
+      color: #666;
+    }
+    .warning {
+      background-color: #ffeb3b;
+      color: #020202;
+      padding: 10px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .warning-icon {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      background-image: url('icons/warning.png');
+      background-size: cover;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    .asterisk {
+      color: #f57c00;
+      margin-left: 5px;
+    }
+    .how-to {
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 300%;
+      max-width: 600px;
+      margin-bottom: 20px;
+    }
+    .how-to h2 {
+      margin-top: 0;
+    }
+    .how-to ol {
+      padding-left: 20px;
+    }
+    .linesContainer {
+      display: flex;
+      flex-direction: row;
+    }
+    .warning-bullets {
+      text-align: left;
+      margin-bottom: 5px;
+    }
+    .warning-bullets ul {
+      list-style-type: none; /* Remove default bullet points */
+      padding-left: 0; /* Remove default padding */
+    }
+    .warning-bullets ul li {
+      position: relative;
+      padding-left: 15px;
+      margin-bottom: 5px;
+    }
+    .warning-bullets ul li:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 6px;
+      height: 6px;
+      background-color: #000;
+      border-radius: 50%;
+    }
+    button#submit {
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">SOL Proceedings</h1>
+    <form id="myForm">
+      <div id="linesContainer" class="linesContainer">
+        <div class="line">
+          <b>
+          <label for="sectionTitle">Nome do evento</label>
+          </b>
+          <input type="text" name="sectionTitle" id="sectionTitle">
+          <b>
+          <label for="sectionTitleEn">Nome do evento em inglês</label>
+          </b>
+          <input type="text" name="sectionTitleEn" id="sectionTitleEn">
+          <b>
+          <label for="sectionAbbrev">Sigla do evento</label>
+          </b>
+          <input type="text" name="sectionAbbrev" id="sectionAbbrev">
+          <b>
+          <label for="blind">Blind: 1- Single Blind, 2- Double Blind</label>
+          </b>
+          <input type="number" name="blind" id="blind">
+          <b>
+          <label for="numSubmitted">Número de artigos submetidos</label>
+          </b>
+          <input type="number" name="numSubmitted" id="numSubmitted">
+          <b>
+          <label for="numAccepted">Número de artigos aceitos</label>
+          </b>
+          <input type="number" name="numAccepted" id="numAccepted">
+          <b>
+          <label for="dateSub">Data: Paper submission</label>
+          </b>
+          <input type="date" name="dateSub" id="dateSub">
+          <b>
+          <label for="dateResult">Date: Notification of acceptance</label>
+          </b>
+          <input type="date" name="dateResult" id="dateResult">
+          <b>
+          <label for="dateReady">Date: Camera-ready paper submission</label>
+          </b>
+          <input type="date" name="dateReady" id="dateReady" placeholder="Date: Camera-ready paper submission">
+          <b>
+          <label for="files">Arquivos pdf dos artigos aceitos</label>
+          </b>
+          <input type="file" name="files" multiple>
+        </div>
+        <div class="how-to">
+          <h2>Como usar:</h2>
+          <ol>
+            <li>Preencha os campos acerca do seu evento.</li>
+            <br>
+            <li>Submeta a pasta com os artigos, sendo o nome de cada arquivo o IdJEMS dele.</li>
+            <br>
+            <li>Serão feitos automaticamente o download dos 4 CSVs (artigos, referências, seções, autores).</li>
+            <br>
+            <li>Importe os 4 arquivos na ferramenta preferida de planilha, revise os campos e preencha os faltantes.</li>
+          </ol>
+        </div>
+      </div>
+      <button type="button" id="submit" margin-left="auto" margin-right="auto">Submeter</button>
+    </form>
+    <div class="warning">
+      <span class="warning-icon"></span>
+      <div class="warning-bullets">
+        <ul>
+          <li>Por favor revise os documentos que serão gerados.</li>
+          <li>Em caso de muitos artigos esse processo pode demorar alguns minutos.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script src="./pdfjs/build/pdf.mjs" type="module"></script>
+  <script src="parser.js"></script>
+</body>
+</html>

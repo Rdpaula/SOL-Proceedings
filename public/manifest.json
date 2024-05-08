@@ -1,33 +1,24 @@
 {
   "manifest_version": 3,
-  "name": "Jems Converter",
+  "name": "SOL Proceedings",
   "version": "0.1.0",
-  "description": "My Chrome Extension",
+  "description": "Extensão para automatizar criação de Proceedings para a SOL",
   "icons": {
     "16": "icons/icon_16.png",
     "32": "icons/icon_32.png",
     "48": "icons/icon_48.png",
     "128": "icons/icon_128.png"
   },
+  "web_accessible_resources": [{
+    "resources": ["pdfjs/web/viewer.html"],
+    "matches": ["<all_urls>"],
+    "use_dynamic_url": true
+  }],
   "background": {
     "service_worker": "background.js"
   },
-  "action": {
-    "default_title": "Jems Converter",
-    "default_popup": "popup.html"
-  },
+  "action": {},
   "permissions": [
-    "storage"
-  ],
-  "content_scripts": [
-    {
-      "matches": [
-        "<all_urls>"
-      ],
-      "run_at": "document_idle",
-      "js": [
-        "contentScript.js"
-      ]
-    }
+    "downloads"
   ]
 }
