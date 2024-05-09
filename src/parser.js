@@ -103,7 +103,6 @@
             PDFDocumentInstance.getPage(pageNum).then(function (pdfPage) {
                 pdfPage.getTextContent().then(function (textContent) {
                     var textItems = textContent.items;
-                    console.log(textItems)
                     resolve(textItems)
                 });
             });
@@ -181,9 +180,9 @@
             let text = await getPageText(i, file)
             let size = text.length;
             let ind = i == indPage ? indArray : 0;
-            if(i == indPage) beginRefPosition = text[ind].transform[4];
+            if(i == indPage) beginRefPosition = Math.round(text[ind].transform[4] * 100);
             while(ind < size){
-                if(beginRefPosition != text[ind].transform[4] || text[ind].str == "" || 
+                if(beginRefPosition != Math.round(text[ind].transform[4] * 100) || text[ind].str == "" || 
                     text[ind].str == " "){
                         curStr += text[ind].str + (text[ind].hasEOL ? " " : "");
                 }
